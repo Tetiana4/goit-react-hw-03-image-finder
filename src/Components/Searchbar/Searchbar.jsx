@@ -1,3 +1,12 @@
+import React from 'react';
+import {
+  Searchform,
+  Searchbtn,
+  Searchlabel,
+  Searchinput,
+  Searchbarh,
+} from './Searchbar.styled';
+
 export const Searchbar = ({ onSearch }) => {
   const handleSearch = e => {
     e.preventDefault();
@@ -5,21 +14,20 @@ export const Searchbar = ({ onSearch }) => {
   };
 
   return (
-    <header className="Searchbar">
-      <form onSubmit={handleSearch} className="SearchForm">
-        <button type="submit" className="SearchForm-button">
-          <span className="SearchForm-button-label">Search</span>
-        </button>
+    <Searchbarh>
+      <Searchform onSubmit={handleSearch}>
+        <Searchbtn type="submit">
+          <Searchlabel>Search</Searchlabel>
+        </Searchbtn>
 
-        <input
-          className="SearchForm-input"
+        <Searchinput
           type="text"
           name="imageName"
           autoComplete="off"
-          // autofocus
+          autoFocus
           placeholder="Search images and photos"
         />
-      </form>
-    </header>
+      </Searchform>
+    </Searchbarh>
   );
 };
