@@ -5,6 +5,7 @@ import { fetchImages } from '../services/api';
 import { Container } from './App.styled';
 import { Searchbar } from '../Components/Searchbar/Searchbar';
 import { ImageGallery } from '../Components/ImageGallery/ImageGallery';
+import { ImageGalleryItem } from '../Components/ImageGalleryItem/ImageGalleryItem';
 import { Button } from '../Components/Button/Button';
 import { Spinner } from '../Components/Loader/Loader';
 import Modal from '../Components/Modal/Modal';
@@ -17,18 +18,15 @@ export class App extends Component {
     status: 'idle',
     page: 1,
     showModal: false,
-
-    modalSrc: '',
-  };
-
-  toogleModal = () => {
-    this.setState(state => ({
-      showModal: !state.showModal,
-    }));
+    largeUrl: '',
   };
 
   handleFormSubmit = imageName => {
     this.setState({ imageName });
+  };
+
+  handleSelectedImg = imageUrl => {
+    this.setState({ selectedImg: imageUrl });
   };
 
   async componentDidUpdate(prevProps, prevState) {
@@ -66,6 +64,18 @@ export class App extends Component {
     }
   }
 
+  toogleModal = () => {
+    this.setState(state => ({
+      showModal: !state.showModal,
+    }));
+  };
+
+  writeSrcState = data => {
+    this.setState({
+      largeUrl: data,
+    });
+  };
+
   onLoadMore = () => {
     this.setState(prevState => ({
       page: prevState.page + 1,
@@ -73,18 +83,30 @@ export class App extends Component {
   };
 
   render() {
-    const { images, status, showModal } = this.state;
+    const { images, status, showModal, largeUrl } = this.state;
 
     return (
       <Container>
         <Searchbar onSearch={this.handleFormSubmit} />
         {status === 'pending' && <Spinner />}
-        <ImageGallery images={images} />
+        <ImageGallery>
+          <ImageGalleryItem
+            images={images}
+            toogleModal={this.toogleModal}
+            writeSrcState={this.writeSrcState}
+          />
+        </ImageGallery>
         {images.length > 1 && <Button onClick={this.onLoadMore} />}
 
         {/* {isShowImageList && <ImageGallery images={images} />} */}
 
-        {showModal && <Modal />}
+        {showModal && (
+          <Modal
+            largeImg={largeUrl}
+            showLoader={showModal}
+            toogleModal={this.toogleModal}
+          />
+        )}
         <ToastContainer autoClose={3000} />
       </Container>
     );

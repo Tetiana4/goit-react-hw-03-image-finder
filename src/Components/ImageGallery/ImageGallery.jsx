@@ -1,13 +1,8 @@
-import React from 'react';
-import { ImageGalleryItem } from '../ImageGalleryItem/ImageGalleryItem';
+import { Component } from 'react';
 import { Gallery } from './ImageGallery.styled';
 
-export const ImageGallery = ({ images }) => {
-  return (
-    <Gallery>
-      {images.map(image => (
-        <ImageGalleryItem {...image} key={image.id} />
-      ))}
-    </Gallery>
-  );
-};
+export class ImageGallery extends Component {
+  render() {
+    return <Gallery>{this.props.children}</Gallery>;
+  }
+}
