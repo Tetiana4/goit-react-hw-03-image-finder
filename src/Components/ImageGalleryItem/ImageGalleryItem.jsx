@@ -1,9 +1,9 @@
 import { Component } from 'react';
 
 export class ImageGalleryItem extends Component {
-  writeSrcState = e => {
-    this.props.writeSrcState(e.target.dataset.src);
-    this.props.toogleModal();
+  selectedImg = e => {
+    this.props.selectedImg(e.target.dataset.src);
+    this.props.toggleModal();
   };
 
   render() {

@@ -31,7 +31,7 @@ export class App extends Component {
     this.setState({ selectedImg: imageUrl });
   };
 
-  toogleModal = () => {
+  toggleModal = () => {
     this.setState(state => ({
       showModal: !state.showModal,
     }));
@@ -52,13 +52,15 @@ export class App extends Component {
   async componentDidUpdate(prevProps, prevState) {
     const { imageName, page } = this.state;
 
-    if (prevState.imageName !== this.state.imageName) {
+    if (
+      prevState.imageName !== this.state.imageName ||
+      prevState.page !== this.state.page
+    ) {
       if (imageName.trim() === '') {
         return toast.error('Common... write something.');
       }
 
       try {
-        // this.setState({ status: 'pending', images: [] });
         const images = await fetchImages(imageName, page);
 
         if (images.length === 0) {
@@ -70,7 +72,7 @@ export class App extends Component {
           status: 'resolved',
         }));
 
-        toast('Hope you are enjoy');
+        toast('🎉 Hope you are enjoy');
       } catch (error) {
         this.setState({ status: 'rejected' });
         toast.error('Error');
@@ -94,11 +96,11 @@ export class App extends Component {
         <ImageGallery>
           <ImageGalleryItem
             images={images}
-            toogleModal={this.toogleModal}
-            writeSrcState={this.selectedImg}
+            toggleModal={this.toggleModal}
+            selectedImg={this.selectedImg}
           />
         </ImageGallery>
-        {images.length > 0 && <Button onClick={this.onLoadMore} />}
+        {images.length > 12 && <Button onClick={this.onLoadMore} />}
 
         {showModal && (
           <Modal
