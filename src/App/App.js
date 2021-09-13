@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
+
 import { fetchImages } from '../services/api';
 import { Container } from './App.styled';
 import { Searchbar } from '../Components/Searchbar/Searchbar';
@@ -9,7 +9,9 @@ import { ImageGalleryItem } from '../Components/ImageGalleryItem/ImageGalleryIte
 import { Button } from '../Components/Button/Button';
 import { Spinner } from '../Components/Loader/Loader';
 import Modal from '../Components/Modal/Modal';
+
 import '../App.css';
+import 'react-toastify/dist/ReactToastify.css';
 
 export class App extends Component {
   state = {
@@ -42,8 +44,7 @@ export class App extends Component {
         const images = await fetchImages(imageName, page);
 
         if (images.length === 0) {
-          toast.error('Please, write something better');
-          return;
+          return toast.error('Please, write something better');
         }
 
         this.setState(prevState => ({
@@ -51,16 +52,17 @@ export class App extends Component {
           status: 'resolved',
         }));
 
-        // this.setState({
-        //   images,
-        //   status: 'resolved',
-        // });
-
         toast('Hope you are enjoy');
       } catch (error) {
         this.setState({ status: 'rejected' });
         toast.error('Error');
       }
+
+      page > 1 &&
+        window.scrollTo({
+          top: document.documentElement.scrollHeight,
+          behavior: 'smooth',
+        });
     }
   }
 
@@ -70,7 +72,7 @@ export class App extends Component {
     }));
   };
 
-  writeSrcState = data => {
+  selectedImg = data => {
     this.setState({
       largeUrl: data,
     });
@@ -93,12 +95,10 @@ export class App extends Component {
           <ImageGalleryItem
             images={images}
             toogleModal={this.toogleModal}
-            writeSrcState={this.writeSrcState}
+            writeSrcState={this.selectedImg}
           />
         </ImageGallery>
-        {images.length > 1 && <Button onClick={this.onLoadMore} />}
-
-        {/* {isShowImageList && <ImageGallery images={images} />} */}
+        {images.length > 0 && <Button onClick={this.onLoadMore} />}
 
         {showModal && (
           <Modal
