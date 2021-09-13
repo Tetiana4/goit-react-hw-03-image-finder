@@ -1,4 +1,5 @@
 import { Component } from 'react';
+import { Item, Image } from './ImageGalleryItem.styled';
 
 export class ImageGalleryItem extends Component {
   selectedImg = e => {
@@ -9,14 +10,14 @@ export class ImageGalleryItem extends Component {
   render() {
     const { images } = this.props;
     return images.map(image => (
-      <li key={image.id}>
-        <img
+      <Item key={image.id}>
+        <Image
           src={image.webformatURL}
           alt=""
           data-src={image.largeImageURL}
           onClick={this.selectedImg}
         />
-      </li>
+      </Item>
     ));
   }
 }
