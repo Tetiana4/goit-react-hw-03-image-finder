@@ -31,6 +31,24 @@ export class App extends Component {
     this.setState({ selectedImg: imageUrl });
   };
 
+  toogleModal = () => {
+    this.setState(state => ({
+      showModal: !state.showModal,
+    }));
+  };
+
+  selectedImg = data => {
+    this.setState({
+      largeUrl: data,
+    });
+  };
+
+  onLoadMore = () => {
+    this.setState(prevState => ({
+      page: prevState.page + 1,
+    }));
+  };
+
   async componentDidUpdate(prevProps, prevState) {
     const { imageName, page } = this.state;
 
@@ -40,7 +58,7 @@ export class App extends Component {
       }
 
       try {
-        this.setState({ status: 'pending', images: [] });
+        // this.setState({ status: 'pending', images: [] });
         const images = await fetchImages(imageName, page);
 
         if (images.length === 0) {
@@ -65,24 +83,6 @@ export class App extends Component {
         });
     }
   }
-
-  toogleModal = () => {
-    this.setState(state => ({
-      showModal: !state.showModal,
-    }));
-  };
-
-  selectedImg = data => {
-    this.setState({
-      largeUrl: data,
-    });
-  };
-
-  onLoadMore = () => {
-    this.setState(prevState => ({
-      page: prevState.page + 1,
-    }));
-  };
 
   render() {
     const { images, status, showModal, largeUrl } = this.state;
