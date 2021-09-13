@@ -14,7 +14,7 @@ export class ImageGalleryItem extends Component {
           src={image.webformatURL}
           alt=""
           data-src={image.largeImageURL}
-          onClick={this.writeSrcState}
+          onClick={this.selectedImg}
         />
       </li>
     ));

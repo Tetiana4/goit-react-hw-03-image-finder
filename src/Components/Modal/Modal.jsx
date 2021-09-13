@@ -11,13 +11,13 @@ export default class Modal extends Component {
 
   handleEscClick = event => {
     if (event.code === 'Escape') {
-      this.props.toogleModal();
+      this.props.toggleModal();
     }
   };
 
   handleOverlayClick = e => {
     if (e.target === e.currentTarget) {
-      this.props.toogleModal();
+      this.props.toggleModal();
     }
   };
 

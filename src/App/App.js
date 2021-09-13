@@ -100,13 +100,13 @@ export class App extends Component {
             selectedImg={this.selectedImg}
           />
         </ImageGallery>
-        {images.length > 12 && <Button onClick={this.onLoadMore} />}
+        {images.length > 1 && <Button onClick={this.onLoadMore} />}
 
         {showModal && (
           <Modal
             largeImg={largeUrl}
             showLoader={showModal}
-            toogleModal={this.toogleModal}
+            toggleModal={this.toggleModal}
           />
         )}
         <ToastContainer autoClose={3000} />
