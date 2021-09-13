@@ -24,11 +24,27 @@ export class App extends Component {
   };
 
   handleFormSubmit = imageName => {
+    if (this.state.imageName === imageName) {
+      toast('😲 You are so boring... Maybe something new');
+      return;
+    }
+    this.resetState();
     this.setState({ imageName });
   };
 
   handleSelectedImg = imageUrl => {
     this.setState({ selectedImg: imageUrl });
+  };
+
+  resetState = () => {
+    this.setState({
+      imageName: null,
+      images: [],
+      status: 'idle',
+      page: 1,
+      showModal: false,
+      largeUrl: '',
+    });
   };
 
   toggleModal = () => {
