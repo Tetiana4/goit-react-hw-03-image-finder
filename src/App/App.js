@@ -61,7 +61,8 @@ export class App extends Component {
 
   onLoadMore = () => {
     this.setState(prevState => ({
-      page: prevState.page + 1,
+      page: this.state.page + 1,
+      // page: prevState.page + 1,
     }));
   };
 
@@ -72,6 +73,10 @@ export class App extends Component {
       prevState.imageName !== this.state.imageName ||
       prevState.page !== this.state.page
     ) {
+      this.setState({
+        status: 'pending',
+      });
+
       if (imageName.trim() === '') {
         return toast.error('Common... write something.');
       }
@@ -116,7 +121,7 @@ export class App extends Component {
             selectedImg={this.selectedImg}
           />
         </ImageGallery>
-        {images.length > 1 && <Button onClick={this.onLoadMore} />}
+        {images.length > 11 && <Button onClick={this.onLoadMore} />}
 
         {showModal && (
           <Modal
