@@ -28,10 +28,10 @@ export const Searchbtn = styled.button`
   }
 `;
 export const Searchlabel = styled.span`
+  padding: 0;
   position: absolute;
   width: 1px;
   height: 1px;
-  padding: 0;
   overflow: hidden;
   clip: rect(0, 0, 0, 0);
   white-space: nowrap;
@@ -39,32 +39,30 @@ export const Searchlabel = styled.span`
   border: 0;
 `;
 export const Searchinput = styled.input`
+  padding: 0 4px;
   display: inline-block;
   width: 100%;
   font: inherit;
   font-size: 20px;
   border: none;
   outline: none;
-  padding-left: 4px;
-  padding-right: 4px;
   &::placeholder {
     font: inherit;
     font-size: 18px;
   }
 `;
 export const Searchbarh = styled.header`
+  padding: 12px 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
   top: 0;
   left: 0;
   position: sticky;
   z-index: 1100;
-  display: flex;
-  justify-content: center;
-  align-items: center;
   min-height: 64px;
-  padding-right: 24px;
-  padding-left: 24px;
-  padding-top: 12px;
-  padding-bottom: 12px;
+
   color: #fff;
   background-color: #4a0e4e;
   box-shadow: 0px 2px 4px -1px rgba(0, 0, 0, 0.2),
