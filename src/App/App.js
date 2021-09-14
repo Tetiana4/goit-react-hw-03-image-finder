@@ -78,6 +78,9 @@ export class App extends Component {
       });
 
       if (imageName.trim() === '') {
+        this.setState({
+          status: 'idle',
+        });
         return toast.error('Common... write something.');
       }
 
@@ -85,6 +88,9 @@ export class App extends Component {
         const images = await fetchImages(imageName, page);
 
         if (images.length === 0) {
+          this.setState({
+            status: 'idle',
+          });
           return toast.error('Please, write something better');
         }
 

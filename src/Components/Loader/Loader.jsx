@@ -7,9 +7,9 @@ export const Spinner = () => {
       <Loader
         type="Puff"
         color="#4a0e4e"
-        height={100}
-        width={100}
-        timeout={3000} //3 secs
+        height={90}
+        width={90}
+        timeout={3000}
       />
     </Loaderbtn>
   );
