@@ -1,5 +1,5 @@
 import { Component } from 'react';
-import { Gallery } from './ImageGallery.styled';
+import { Gallery } from './ImageGalery.styled';
 
 export class ImageGallery extends Component {
   render() {

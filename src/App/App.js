@@ -3,12 +3,12 @@ import { ToastContainer, toast } from 'react-toastify';
 
 import { fetchImages } from '../services/api';
 import { Container } from './App.styled';
-import { Searchbar } from '../Components/Searchbar/Searchbar';
-import { ImageGallery } from '../Components/ImageGallery/ImageGallery';
-import { ImageGalleryItem } from '../Components/ImageGalleryItem/ImageGalleryItem';
-import { Button } from '../Components/Button/Button';
-import { Spinner } from '../Components/Loader/Loader';
-import Modal from '../Components/Modal/Modal';
+import { Searchbar } from '../components/Searchbar/Searchbar';
+import { ImageGallery } from '../components/ImageGallery/ImageGallery';
+import { ImageGalleryItem } from '../components/ImageGalleryItem/ImageGalleryItem';
+import { Button } from '../components/Button/Button';
+import { Spinner } from '../components/Loader/Loader';
+import Modal from '../components/Modal/Modal';
 
 import '../App.css';
 import 'react-toastify/dist/ReactToastify.css';
